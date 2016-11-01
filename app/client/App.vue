@@ -1,6 +1,7 @@
 <template lang="jade">
   div#app
     img(src="./assets/logo.png")
+    h1 shortcuts
     hello
 </template>
 

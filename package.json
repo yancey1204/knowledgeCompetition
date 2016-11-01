@@ -17,7 +17,8 @@
     "express": "^4.14.0",
     "mongoose": "^4.6.5",
     "body-parser": "^1.15.2",
-    "vue": "^2.0.1"
+    "vue": "^2.0.1",
+    "function-bind": "^1.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
@@ -44,7 +45,6 @@
     "eventsource-polyfill": "^0.9.6",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
-    "function-bind": "^1.0.2",
     "html-webpack-plugin": "^2.8.1",
     "http-proxy-middleware": "^0.17.2",
     "inject-loader": "^2.0.1",

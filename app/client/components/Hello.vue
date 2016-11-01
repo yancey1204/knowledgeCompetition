@@ -1,10 +1,9 @@
 <template lang="jade">
 div.hello
-  span Shortcut for 
-  h1 {{ question }}
+  h1 {{ questionPair.question }}
   ul
-    li(v-for="option in options") 
-      button {{ option.text }}
+    li(v-for="(option, index) in options") 
+      button(@click="checkResult") {{ option.answer }}
 </template>
 
 <script>
@@ -12,13 +11,48 @@ export default {
   name: 'hello',
   data() {
     return {
-      question: 'Search everywhere',
+      questionPair: {
+        question: 'Search everywhere',
+        answer: 'double shift',
+      },
       options: [
-        { text: 'cmd + A' },
-        { text: 'double shift' },
-        { text: 'cmd + F' },
+        { answer: 'cmd + A' },
+        { answer: 'cmd + O' },
+        { answer: 'cmd + F' },
       ],
     };
+  },
+  created() {
+    this.options.push({ answer: this.questionPair.answer });
+    this.shuffle(this.options);
+  },
+  methods: {
+    checkResult(event) {
+      const Selection = event.target.textContent;
+      if (Selection === this.questionPair.answer) {
+        alert('correct');
+      } else {
+        alert('wrong');
+      }
+    },
+    shuffle(array) {
+      let currentIndex = array.length;
+      let temporaryValue;
+      let randomIndex;
+
+      while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        /* eslint-disable */
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+        /* eslint-enable */
+      }
+
+      return array;
+    },
   },
 };
 </script>

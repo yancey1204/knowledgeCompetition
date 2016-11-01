@@ -1,0 +1,22 @@
+[
+     {
+        "question": "Search everywhere",
+        "answer": "double shift"
+      },
+      {
+          "question": "Go to class",
+          "answer": "cmd + O"
+      },
+      {
+          "question": "Go to Line",
+          "answer": "cmd + L"
+      },
+      {
+          "question": "Go to declaration",
+          "answer": "cmd + B"
+      },
+      {
+          "question": "Find Usage",
+          "answer": "option + F7"
+      }
+]
