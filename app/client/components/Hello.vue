@@ -3,11 +3,12 @@ div.hello
   h1 {{ questionPair.question }}
   ul
     li(v-for="(option, index) in options") 
-      button(@click="checkResult") {{ option.answer }}
+      button(@click="checkResult") {{ option.answer | symbolFilter }}
 </template>
 
 <script>
 import questionList from '../services/questionList.json';
+import shortcutMap from '../services/shortcutMap.json';
 
 export default {
   name: 'hello',
@@ -104,6 +105,21 @@ export default {
       return this.shuffle(this.indexes);
     },
   },
+
+  filters: {
+    symbolFilter(text) {
+      const textArray = text.split(' ');
+      const returnArray = [];
+      let tempText;
+
+      textArray.forEach((aText) => {
+        tempText = shortcutMap[aText] || aText;
+        returnArray.push(tempText);
+      });
+
+      return returnArray.join(' ');
+    },
+  },
 };
 </script>
 
@@ -130,5 +146,4 @@ ul
       text-decoration: none;
       display: inline-block;
       font-size: fontSize;
-
 </style>
