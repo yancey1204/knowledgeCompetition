@@ -2,16 +2,16 @@
   div#app
     img(src="./assets/logo.png")
     h1 shortcuts
-    hello
+      question-area
 </template>
 
 <script>
-import Hello from './components/Hello';
+import QuestionArea from './components/QuestionArea';
 
 export default {
   name: 'app',
   components: {
-    Hello,
+    QuestionArea,
   },
 };
 </script>

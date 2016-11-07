@@ -1,48 +1,52 @@
 <template lang="jade">
-div.hello
+div.question-area
   h1 {{ questionPair.question }}
   ul
     li(v-for="(option, index) in options") 
-      button(@click="checkResult") {{ option.answer | symbolFilter }}
+      button(@click="checkResult(option)") {{ option.answer | symbolFilter }}
 </template>
 
 <script>
 import questionList from '../services/questionList.json';
 import shortcutMap from '../services/shortcutMap.json';
 
+function shuffle(array) {
+  const newArray = array.slice(0);
+  let currentIndex = newArray.length;
+  let temporaryValue;
+  let randomIndex;
+
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = newArray[currentIndex];
+    newArray[currentIndex] = newArray[randomIndex];
+    newArray[randomIndex] = temporaryValue;
+  }
+
+  return newArray;
+}
+
 export default {
-  name: 'hello',
+  name: 'question-area',
 
   data() {
     return {
       questionPair: {},
-      questionPosition: 0,
-      tempIndex: 1,
+      tempIndex: 0,
       indexes: [],
-      history: [],
       options: [],
     };
   },
 
   created() {
-    this.indexes = this.getRandomIndexes();
-    this.questionPosition = this.indexes[0];
-    this.questionPair = questionList[this.questionPosition];
-    this.options.push({ answer: this.questionPair.answer });
-
-    for (let i = 1; i < 4; i += 1) {
-      this.options.push({ answer: questionList[this.indexes[i]].answer });
-    }
-
-    this.shuffle(this.options);
+    this.getNewQuestionIndex();
+    this.getNextQuestion();
   },
 
   methods: {
-    checkResult(event) {
-      const Selection = event.target.textContent;
-      if (Selection === this.questionPair.answer) {
-        alert('correct');
-        this.history.push(this.questionPosition);
+    checkResult(option) {
+      if (option.answer === this.questionPair.answer) {
         this.getNextQuestion();
       } else {
         alert('wrong');
@@ -50,18 +54,18 @@ export default {
     },
 
     getNextQuestion() {
-      this.questionPosition = this.indexes[this.tempIndex];
-      this.questionPair = questionList[this.questionPosition];
+      const questionPosition = this.indexes[this.tempIndex];
+      this.questionPair = questionList[questionPosition];
       this.options = [];
       this.options.push({ answer: this.questionPair.answer });
 
       for (let i = 1; i < this.indexes.length; i += 1) {
-        if (this.options.length < 4 && this.questionPosition !== this.indexes[i]) {
+        if (this.options.length < 4 && questionPosition !== this.indexes[i]) {
           this.options.push({ answer: questionList[this.indexes[i]].answer });
         }
       }
 
-      this.shuffle(this.options);
+      this.options = shuffle(this.options);
 
       if (this.tempIndex === this.indexes.length - 1) {
         this.tempIndex = 0;
@@ -77,32 +81,14 @@ export default {
       return this.indexes[0];
     },
 
-    shuffle(array) {
-      let currentIndex = array.length;
-      let temporaryValue;
-      let randomIndex;
-
-      while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        /*eslint-disable*/
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-        /*eslint-enable*/
-      }
-
-      return array;
-    },
-
     getRandomIndexes() {
-      this.indexes = [];
+      const indexes = [];
 
       for (let i = 0; i < questionList.length; i += 1) {
-        this.indexes.push(i);
+        indexes.push(i);
       }
 
-      return this.shuffle(this.indexes);
+      return shuffle(indexes);
     },
   },
 
