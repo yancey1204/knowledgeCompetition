@@ -28,6 +28,7 @@
     "babel-preset-stage-2":"latest",
     "babel-plugin-transform-runtime": "latest",
     "babel-runtime": "latest",
+    "babel-eslint": "latest",
     "ora": "^0.3.0",
     "chai": "^3.5.0",
     "chromedriver": "^2.21.2",
