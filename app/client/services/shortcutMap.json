@@ -1,5 +1,26 @@
 {
     "cmd": "\u2318",
     "shift": "\u21E7",
-    "option": "\u2325"
+    "option": "\u2325",
+    "ctrl": "\u2303",
+    "return": "\u23CE",
+    "escape": "\u238B",
+    "tab": "\u21E5",
+    "caps": "\u21EA",
+    "apple": "\uF8FF",
+    "space": "\u2423",
+    "backspace": "\u232B",
+    "delete": "\u2326",
+    "home": "\u21F1",
+    "end": "\u21F2",
+    "pageUp": "\u21DE",
+    "pageDown": "\u21DF",
+    "upArrow": "\u2191",
+    "downArrow": "\u2193",
+    "leftArrow": "\u2190",
+    "rightArrow": "\u2192",
+    "clear": "\u2327",
+    "enter": "\u2324",
+    "eject": "\u23CF",
+    "power": "\u233D"
 }
