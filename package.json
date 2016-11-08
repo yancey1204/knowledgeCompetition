@@ -5,13 +5,13 @@
   "author": "Zhihui Yan <zhihui_yan@epam.com>",
   "private": true,
   "scripts": {
-    "build": "node build/build.js",
+    "build": "npm run build && NODE_ENV=production node --harmony app.js",
     "dev": "npm run build && node --harmony app.js",
     "unit": "karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
-    "start": "npm run build && NODE_ENV=production node --harmony app.js"
+    "start": "node build/build.js"
   },
   "dependencies": {
     "express": "^4.14.0",
