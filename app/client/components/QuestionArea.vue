@@ -7,25 +7,9 @@ div.question-area
 </template>
 
 <script>
+import _ from 'lodash';
 import questionList from '../services/questionList.json';
-import shortcutMap from '../services/shortcutMap.json';
-
-function shuffle(array) {
-  const newArray = array.slice(0);
-  let currentIndex = newArray.length;
-  let temporaryValue;
-  let randomIndex;
-
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-    temporaryValue = newArray[currentIndex];
-    newArray[currentIndex] = newArray[randomIndex];
-    newArray[randomIndex] = temporaryValue;
-  }
-
-  return newArray;
-}
+import * as utils from '../utils';
 
 export default {
   name: 'question-area',
@@ -65,7 +49,7 @@ export default {
         }
       }
 
-      this.options = shuffle(this.options);
+      this.options = _.shuffle(this.options);
 
       if (this.tempIndex === this.indexes.length - 1) {
         this.tempIndex = 0;
@@ -88,22 +72,13 @@ export default {
         indexes.push(i);
       }
 
-      return shuffle(indexes);
+      return _.shuffle(indexes);
     },
   },
 
   filters: {
     symbolFilter(text) {
-      const textArray = text.split(' ');
-      const returnArray = [];
-      let tempText;
-
-      textArray.forEach((aText) => {
-        tempText = shortcutMap[aText] || aText;
-        returnArray.push(tempText);
-      });
-
-      return returnArray.join(' ');
+      return utils.filters.symbolFilter(text);
     },
   },
 };
@@ -111,6 +86,8 @@ export default {
 
 <style lang="stylus" scoped>
 fontSize = 16px
+fullWidth = 100%
+quarterWidth = 20%
 
 h1
   font-weight: normal
@@ -118,18 +95,23 @@ h1
 
 ul
   list-style: none
+  width: fullWidth
+  padding: 0
   
   li
     display: inline-block
     margin: 0 fontSize
+    width: quarterWidth
 
     button
-      background-color: #4CAF50;
-      border: none;
-      color: white;
-      padding: 10px 25px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: fontSize;
+      background-color: #4CAF50
+      border: none
+      color: white
+      padding: 15px 25px
+      text-align: center
+      text-decoration: none
+      display: inline-block
+      font-size: fontSize
+      width: fullWidth
+      min-width: 200px
 </style>
