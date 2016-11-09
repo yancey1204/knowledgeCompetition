@@ -24,7 +24,7 @@ export default {
   },
 
   created() {
-    this.getNewQuestionIndex();
+    this.indexes = this.getRandomIndexes();
     this.getNextQuestion();
   },
 
@@ -43,7 +43,7 @@ export default {
       this.options = [];
       this.options.push({ answer: this.questionPair.answer });
 
-      for (let i = 1; i < this.indexes.length; i += 1) {
+      for (let i = 0; i < this.indexes.length; i += 1) {
         if (this.options.length < 4 && questionPosition !== this.indexes[i]) {
           this.options.push({ answer: questionList[this.indexes[i]].answer });
         }
@@ -53,7 +53,7 @@ export default {
 
       if (this.tempIndex === this.indexes.length - 1) {
         this.tempIndex = 0;
-        this.getNewQuestionIndex();
+        this.indexes = this.getRandomIndexes();
       } else {
         this.tempIndex += 1;
       }
@@ -62,7 +62,7 @@ export default {
     getNewQuestionIndex() {
       this.indexes = this.getRandomIndexes();
 
-      return this.indexes[0];
+      return _.head(this.indexes);
     },
 
     getRandomIndexes() {
