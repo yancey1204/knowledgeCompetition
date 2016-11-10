@@ -3,7 +3,7 @@ div.question-area
   h1 {{ getQuestion(questionPair) | symbolFilter }}
   ul#question-list
     li(v-for="(option, index) in options") 
-      button(@click="checkResult(option)") {{ getAnswer(option) | symbolFilter }}
+      button(@click="checkResult(option)",:class="getClass(option)") {{ getAnswer(option) | symbolFilter }}
   div.footer
     button(@click="getNextQuestion") next
 </template>
@@ -19,6 +19,7 @@ export default {
   data() {
     return {
       questionPair: {},
+      currentOption: null,
       tempIndex: 0,
       indexes: [],
       options: [],
@@ -40,22 +41,20 @@ export default {
       return this.isReversed ? questionPair.question : questionPair.answer;
     },
 
+    getClass(option) {
+      if (option !== this.currentOption) return 'option';
+
+      const isCorrect = this.getAnswer(option) === this.getAnswer(this.questionPair);
+
+      return isCorrect ? 'correct' : 'wrong';
+    },
+
     checkResult(option) {
-      if (this.getAnswer(option) === this.getAnswer(this.questionPair)) {
-        event.target.className = 'info';
-      } else {
-        event.target.className = 'error';
-      }
+      this.currentOption = option;
     },
 
     getNextQuestion() {
-      if (document.querySelector('#question-list')) {
-        document.querySelector('#question-list').childNodes.forEach((node) => {
-          /*eslint-disable*/
-          node.childNodes[0].className = '';        
-          /*eslint-enable*/
-        });
-      }
+      this.currentOption = null;
       this.isReversed = Math.random() < 0.5;
       const questionPosition = this.indexes[this.tempIndex];
       this.questionPair = questionList[questionPosition];
@@ -123,6 +122,7 @@ button
   display: inline-block
   font-size: fontSize
   font-weight: bolder
+  cursor: pointer
 
 ul
   list-style: none
@@ -152,11 +152,11 @@ ul
     background-color: #2c3e50
     color: white
 
-button.info
+button.correct
   background: #27ae60
   color: white
 
-button.error
+button.wrong
   background: #c0392b
   color: white
 </style>
