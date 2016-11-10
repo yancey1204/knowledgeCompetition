@@ -4,6 +4,8 @@ div.question-area
   ul
     li(v-for="(option, index) in options") 
       button(@click="checkResult(option)") {{ option.answer | symbolFilter }}
+  div.footer
+    button(@click="getNextQuestion") next question
 </template>
 
 <script>
@@ -31,7 +33,7 @@ export default {
   methods: {
     checkResult(option) {
       if (option.answer === this.questionPair.answer) {
-        this.getNextQuestion();
+        alert('correct');
       } else {
         alert('wrong');
       }
@@ -50,7 +52,10 @@ export default {
       }
 
       this.options = _.shuffle(this.options);
+      this.getNextTempIndex();
+    },
 
+    getNextTempIndex() {
       if (this.tempIndex === this.indexes.length - 1) {
         this.tempIndex = 0;
         this.indexes = this.getRandomIndexes();
@@ -100,18 +105,27 @@ ul
   
   li
     display: inline-block
-    margin: 0 fontSize
-    width: quarterWidth
+    margin-right: fontSize
 
     button
-      background-color: #4CAF50
-      border: none
-      color: white
-      padding: 15px 25px
-      text-align: center
-      text-decoration: none
-      display: inline-block
-      font-size: fontSize
+      background-color: #3498db
       width: fullWidth
       min-width: 200px
+
+button
+  border: none
+  color: white
+  padding: 15px 25px
+  text-align: center
+  text-decoration: none
+  display: inline-block
+  font-size: fontSize
+
+.footer
+  position: relative;
+  top: 150px;
+
+  button
+    background-color: #2c3e50
+
 </style>

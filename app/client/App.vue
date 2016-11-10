@@ -1,8 +1,7 @@
 <template lang="jade">
   div#app
-    img(src="./assets/logo.png")
     h1 shortcuts
-      question-area
+    question-area
 </template>
 
 <script>
@@ -18,11 +17,10 @@ export default {
 
 <style lang="stylus" scope>
 #app
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-
+  font-family: 'Avenir', Helvetica, Arial, sans-serif
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  color: #2c3e50
+  width: 90%
+  margin: 0 auto
 </style>
