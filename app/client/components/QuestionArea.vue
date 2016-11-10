@@ -1,11 +1,11 @@
 <template lang="jade">
 div.question-area
-  h1 {{ questionPair.question }}
+  h1 {{ getQuestion(questionPair) | symbolFilter }}
   ul
     li(v-for="(option, index) in options") 
-      button(@click="checkResult(option)") {{ option.answer | symbolFilter }}
+      button(@click="checkResult(option)") {{ getAnswer(option) | symbolFilter }}
   div.footer
-    button(@click="getNextQuestion") next question
+    button(@click="getNextQuestion") next
 </template>
 
 <script>
@@ -22,6 +22,7 @@ export default {
       tempIndex: 0,
       indexes: [],
       options: [],
+      isReversed: false,
     };
   },
 
@@ -31,8 +32,16 @@ export default {
   },
 
   methods: {
+    getQuestion(questionPair) {
+      return this.isReversed ? questionPair.answer : questionPair.question;
+    },
+
+    getAnswer(questionPair) {
+      return this.isReversed ? questionPair.question : questionPair.answer;
+    },
+
     checkResult(option) {
-      if (option.answer === this.questionPair.answer) {
+      if (this.getAnswer(option) === this.getAnswer(this.questionPair)) {
         alert('correct');
       } else {
         alert('wrong');
@@ -40,14 +49,15 @@ export default {
     },
 
     getNextQuestion() {
+      this.isReversed = Math.random() < 0.5;
       const questionPosition = this.indexes[this.tempIndex];
       this.questionPair = questionList[questionPosition];
       this.options = [];
-      this.options.push({ answer: this.questionPair.answer });
+      this.options.push(this.questionPair);
 
       for (let i = 0; i < this.indexes.length; i += 1) {
         if (this.options.length < 4 && questionPosition !== this.indexes[i]) {
-          this.options.push({ answer: questionList[this.indexes[i]].answer });
+          this.options.push(questionList[this.indexes[i]]);
         }
       }
 
@@ -92,11 +102,20 @@ export default {
 <style lang="stylus" scoped>
 fontSize = 16px
 fullWidth = 100%
-quarterWidth = 20%
+halfWidth = 500px
 
 h1
   font-weight: normal
   display: inline-block
+
+button
+  border: none
+  padding: 15px 25px
+  text-decoration: none
+  text-align: left
+  display: inline-block
+  font-size: fontSize
+  font-weight: bolder
 
 ul
   list-style: none
@@ -104,22 +123,18 @@ ul
   padding: 0
   
   li
-    display: inline-block
+    display: block
     margin-right: fontSize
+    margin-bottom: 2 * fontSize
+    width: halfWidth
 
     button
-      background-color: #3498db
+      background-color: #FFF
       width: fullWidth
       min-width: 200px
-
-button
-  border: none
-  color: white
-  padding: 15px 25px
-  text-align: center
-  text-decoration: none
-  display: inline-block
-  font-size: fontSize
+      box-shadow: 0 4px 6px rgba(50,50,93,.11),0 1px 3px rgba(0,0,0,.08)
+      border-radius: 5px
+      font-size: fontSize * 1.5
 
 .footer
   position: relative;
@@ -127,5 +142,5 @@ button
 
   button
     background-color: #2c3e50
-
+    color: white
 </style>
