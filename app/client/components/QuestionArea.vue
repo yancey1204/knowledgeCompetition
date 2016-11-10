@@ -1,7 +1,7 @@
 <template lang="jade">
 div.question-area
   h1 {{ getQuestion(questionPair) | symbolFilter }}
-  ul
+  ul#question-list
     li(v-for="(option, index) in options") 
       button(@click="checkResult(option)") {{ getAnswer(option) | symbolFilter }}
   div.footer
@@ -42,13 +42,20 @@ export default {
 
     checkResult(option) {
       if (this.getAnswer(option) === this.getAnswer(this.questionPair)) {
-        alert('correct');
+        event.target.className = 'info';
       } else {
-        alert('wrong');
+        event.target.className = 'error';
       }
     },
 
     getNextQuestion() {
+      if (document.querySelector('#question-list')) {
+        document.querySelector('#question-list').childNodes.forEach((node) => {
+          /*eslint-disable*/
+          node.childNodes[0].className = '';        
+          /*eslint-enable*/
+        });
+      }
       this.isReversed = Math.random() < 0.5;
       const questionPosition = this.indexes[this.tempIndex];
       this.questionPair = questionList[questionPosition];
@@ -132,9 +139,10 @@ ul
       background-color: #FFF
       width: fullWidth
       min-width: 200px
-      box-shadow: 0 4px 6px rgba(50,50,93,.11),0 1px 3px rgba(0,0,0,.08)
       border-radius: 5px
+      border: 1px solid rgba(50,50,93,0.3);
       font-size: fontSize * 1.5
+      transition: all 2s ease
 
 .footer
   position: relative;
@@ -143,4 +151,12 @@ ul
   button
     background-color: #2c3e50
     color: white
+
+button.info
+  background: #27ae60
+  color: white
+
+button.error
+  background: #c0392b
+  color: white
 </style>
