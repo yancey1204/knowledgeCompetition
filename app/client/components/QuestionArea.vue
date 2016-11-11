@@ -9,8 +9,8 @@ div.question-area
 </template>
 
 <script>
+
 import _ from 'lodash';
-import questionList from '../services/questionList.json';
 import * as utils from '../utils';
 
 export default {

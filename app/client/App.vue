@@ -1,7 +1,9 @@
 <template lang="jade">
-  div#app
-    h1 shortcuts
-    question-area
+div#app
+  p
+    router-link(to="/foo") Go to foo
+    router-link(to="/sa") Go to bar
+  router-view
 </template>
 
 <script>
