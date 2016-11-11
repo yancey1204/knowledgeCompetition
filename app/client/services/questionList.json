@@ -1,166 +1,166 @@
 [
      {
          "question": "Search everywhere",
-         "answer": "double shift"
+         "answer": "double [shift]"
       },
       {
           "question": "Go to class",
-          "answer": "cmd O"
+          "answer": "[cmd] O"
       },
       {
           "question": "Go to Line",
-          "answer": "cmd L"
+          "answer": "[cmd] L"
       },
       {
           "question": "Go to declaration",
-          "answer": "cmd B"
+          "answer": "[cmd] B"
       },
       {
           "question": "Find Usage",
-          "answer": "option F7"
+          "answer": "[option] F7"
       },
       {
           "question": "Basic code completion(the name of any class, method or variable)",
-          "answer": "ctrl space"
+          "answer": "[ctrl] [space]"
       },
       {
           "question": "Smart code completion(filters the list of methods and variables by expected type)",
-          "answer": "ctrl shift space"
+          "answer": "[ctrl] [shift] [space]"
       },
       {
           "question": "Complete statement",
-          "answer": "cmd shift return"
+          "answer": "[cmd] [shift] [return]"
       },
       {
           "question": "Parameter info(within method call arguments)",
-          "answer": "cmd P"
+          "answer": "[cmd] P"
       },
       {
           "question": "Quick documentation lookup",
-          "answer": "shift F1"
+          "answer": "[shift] F1"
       },
       {
           "question": "Generate code...(Getters, Seters, Constructors, hashCode/equals, toString)",
-          "answer": "cmd N, ctrl return, ctrl N"
+          "answer": "[cmd] N, [ctrl] [return], [ctrl] N"
       },
       {
           "question": "Override methods",
-          "answer": "ctrl O"
+          "answer": "[ctrl] O"
       },
       {
           "question": "Implement methods",
-          "answer": "ctrl I"
+          "answer": "[ctrl] I"
       },
       {
           "question": "Surround with...(if..else, try..catch, for, synchronized, etc)",
-          "answer": "cmd option T"
+          "answer": "[cmd] [option] T"
       },
       {
           "question": "Comment/uncomment with line comment",
-          "answer": "cmd /"
+          "answer": "[cmd] /"
       },
       {
           "question": "Comment/uncomment with block comment",
-          "answer": "cmd option /"
+          "answer": "[cmd] [option] /"
       },
       {
           "question": "Select successibely increasing code blocks",
-          "answer": "option upArrow"
+          "answer": "[option] [upArrow]"
       },
       {
           "question": "Decrease current selection to previous state",
-          "answer": "option downArrow"
+          "answer": "[option] [downArrow]"
       },
       {
           "question": "Context info",
-          "answer": "ctrl shift Q"
+          "answer": "[ctrl] [shift] Q"
       },
       {
           "question": "Showintention actions and quick-fixes",
-          "answer": "option return"
+          "answer": "[option] [return]"
       },
       {
           "question": "Refomat code",
-          "answer": "cmd option L"
+          "answer": "[cmd] [option] L"
       },
       {
           "question": "Optimize imports",
-          "answer": "ctrl option O"
+          "answer": "[ctrl] [option] O"
       },
       {
           "question": "Auto-indent line(s)",
-          "answer": "ctrl option I"
+          "answer": "[ctrl] [option] I"
       },
       {
           "question": "Indent selected lines",
-          "answer": "tab"
+          "answer": "[tab]"
       },
       {
           "question": "Cut current line or selected block to clipboard",
-          "answer": "cmd X"
+          "answer": "[cmd] X"
       },
       {
           "question": "Copy current line or selected block to clipboard",
-          "answer": "cmd C"
+          "answer": "[cmd] C"
       },
       {
           "question": "paste from clipboard",
-          "answer": "cmd V"
+          "answer": "[cmd] V"
       },
       {
           "question": "Paste from recent buffers",
-          "answer": "cmd shift V"
+          "answer": "[cmd] [shift] V"
       },
       {
           "question": "Duplicate current line or selected block",
-          "answer": "cmd D"
+          "answer": "[cmd] D"
       },
       {
           "question": "Delete line at caret",
-          "answer": "cmd backspace"
+          "answer": "[cmd] [backspace]"
       },
       {
           "question": "Smart line join",
-          "answer": "ctrl shift J"
+          "answer": "[ctrl] [shift] J"
       },
       {
           "question": "Smart line split",
-          "answer": "cmd return"
+          "answer": "[cmd] [return]"
       },
       {
           "question": "Start new line",
-          "answer": "shift return"
+          "answer": "[shift] [return]"
       },
       {
           "question": "Toggle case for word at caret or selected block",
-          "answer": "cmd shift U"
+          "answer": "[cmd] [shift] U"
       },
       {
           "question": "Select till code block end/start",
-          "answer": "cmd shift ] / cmd shift ["
+          "answer": "[cmd] [shift] ] / [cmd] [shift] ["
       },
       {
           "question": "Delete to word end",
-          "answer": "option delete"
+          "answer": "[option] [delete]"
       },
       {
           "question": "Delete to word start",
-          "answer": "option backspace"
+          "answer": "[option] [backspace]"
       },
       {
           "question": "Expand/collapse code block",
-          "answer": "cmd + / cmd -"
+          "answer": "[cmd] + / [cmd] -"
       },
       {
           "question": "Expend all",
-          "answer": "cmd shift +"
+          "answer": "[cmd] [shift] +"
       },
       {
           "question": "Collapse all",
-          "answer": "cmd shift -"
+          "answer": "[cmd] [shift] -"
       },
       {
           "question": "Close active editor tab",
-          "answer": "cmd W"
+          "answer": "[cmd] W"
       }
 ]
