@@ -1,5 +1,6 @@
 <template lang="jade">
 div.question-area
+  h2 test
   h1 {{ getQuestion(questionPair) | symbolFilter }}
   ul#question-list
     li(v-for="(option, index) in options") 
@@ -11,6 +12,7 @@ div.question-area
 <script>
 
 import _ from 'lodash';
+import questionList from '../services/questionList.json';
 import * as utils from '../utils';
 
 export default {
@@ -142,7 +144,7 @@ ul
       border-radius: 5px
       border: 1px solid rgba(50,50,93,0.3);
       font-size: fontSize * 1.5
-      transition: all 2s ease
+      transition: all 0.5s ease
 
 .footer
   position: relative;

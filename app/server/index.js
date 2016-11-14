@@ -1,6 +1,6 @@
 const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
+// const path = require('path');
+// const bodyParser = require('body-parser');
 
 const isProd = process.env.NODE_ENV === 'production';
 const PORT = isProd ? process.env.PORT : 8080;        // set our PORT
@@ -58,7 +58,7 @@ app.use(express.static('dist'));
 
 // // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 // router.get('/', (req, res) => {
-//   res.send(path.resolve(__dirname, '../../dist/index.html'));   
+//   res.send(path.resolve(__dirname, '../../dist/index.html'));
 // });
 
 // router.route('/bears')
@@ -74,7 +74,7 @@ app.use(express.static('dist'));
 
 //         res.json({ message: 'Bear created!' });
 //       });
-      
+
 // });
 
 // // more routes for our API will happen here
@@ -84,5 +84,7 @@ app.use(express.static('dist'));
 // app.use('/api', router);
 
 app.listen(PORT, () => {
+  /*eslint-disable*/
   console.log(`Example app listening on port ${PORT}`);
+  /*eslint-enable*/
 });

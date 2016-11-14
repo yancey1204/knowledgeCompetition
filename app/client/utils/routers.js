@@ -1,10 +1,9 @@
-const App = require('../App.vue');
-// const questionArea = require('../components/QuestionCatalog.vue');
+const questionArea = require('../components/QuestionArea.vue');
 // const questionCatalog = require('../components/QuestionCatalog.vue');
 
 module.exports = [
   {
     path: '/',
-    component: App,
+    component: questionArea,
   },
 ];
