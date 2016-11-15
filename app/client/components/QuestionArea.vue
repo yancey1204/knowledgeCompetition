@@ -12,7 +12,8 @@ div.question-area
 <script>
 
 import _ from 'lodash';
-import questionList from '../services/questionList.json';
+// import questionList from '../data/questionList.json';
+import { getQuestionList } from '../services/questionService';
 import * as utils from '../utils';
 
 export default {
@@ -20,6 +21,7 @@ export default {
 
   data() {
     return {
+      questionList: [],
       questionPair: {},
       currentOption: null,
       tempIndex: 0,
@@ -30,6 +32,10 @@ export default {
   },
 
   created() {
+    this.questionList = getQuestionList();
+    /*eslint-disable*/
+    console.log(res);
+    /*eslint-enable*/
     this.indexes = this.getRandomIndexes();
     this.getNextQuestion();
   },
@@ -59,13 +65,13 @@ export default {
       this.currentOption = null;
       this.isReversed = Math.random() < 0.5;
       const questionPosition = this.indexes[this.tempIndex];
-      this.questionPair = questionList[questionPosition];
+      this.questionPair = this.questionList[questionPosition];
       this.options = [];
       this.options.push(this.questionPair);
 
       for (let i = 0; i < this.indexes.length; i += 1) {
         if (this.options.length < 4 && questionPosition !== this.indexes[i]) {
-          this.options.push(questionList[this.indexes[i]]);
+          this.options.push(this.questionList[this.indexes[i]]);
         }
       }
 
@@ -91,7 +97,7 @@ export default {
     getRandomIndexes() {
       const indexes = [];
 
-      for (let i = 0; i < questionList.length; i += 1) {
+      for (let i = 0; i < this.questionList.length; i += 1) {
         indexes.push(i);
       }
 

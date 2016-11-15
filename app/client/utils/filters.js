@@ -1,4 +1,4 @@
-import shortcutMap from '../services/shortcutMap.json';
+import shortcutMap from '../data/shortcutMap.json';
 
 function symbolFilter(text) {
   const textArray = text.split(' ');
