@@ -40,6 +40,7 @@ if (!isProd) {
 }
 
 app.use(express.static('dist'));
+app.use('/data', express.static('app/server/data'));
 
 app.listen(PORT, () => {
   /*eslint-disable*/

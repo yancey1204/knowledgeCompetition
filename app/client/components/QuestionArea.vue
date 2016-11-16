@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
 div.question-area
   h2 test
   h1 {{ getQuestion(questionPair) | symbolFilter }}
@@ -12,8 +12,6 @@ div.question-area
 <script>
 
 import _ from 'lodash';
-// import questionList from '../data/questionList.json';
-import { getQuestionList } from '../services/questionService';
 import * as utils from '../utils';
 
 export default {
@@ -32,12 +30,16 @@ export default {
   },
 
   created() {
-    this.questionList = getQuestionList();
-    /*eslint-disable*/
-    console.log(res);
-    /*eslint-enable*/
-    this.indexes = this.getRandomIndexes();
-    this.getNextQuestion();
+    fetch('/data/questionList.json', { method: 'GET' })
+      .then((res) => {
+        if (res.ok) {
+          res.json().then((data) => {
+            this.questionList = data;
+            this.indexes = this.getRandomIndexes();
+            this.getNextQuestion();
+          });
+        }
+      });
   },
 
   methods: {

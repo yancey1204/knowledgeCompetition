@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
 div#app
   p
     router-link(to="/foo") Go to foo
