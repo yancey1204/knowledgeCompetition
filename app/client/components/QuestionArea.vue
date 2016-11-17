@@ -1,6 +1,5 @@
 <template lang="pug">
 div.question-area
-  h2 test
   h1 {{ getQuestion(questionPair) | symbolFilter }}
   ul#question-list
     li(v-for="(option, index) in options") 
@@ -10,7 +9,7 @@ div.question-area
 </template>
 
 <script>
-
+import 'whatwg-fetch';
 import _ from 'lodash';
 import * as utils from '../utils';
 
