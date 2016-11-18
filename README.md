@@ -1,4 +1,5 @@
 # knowledge-competition
+[![Build Status](https://travis-ci.org/yancey1204/knowledgeCompetition.svg?branch=master)](https://travis-ci.org/yancey1204/knowledgeCompetition)
 
 > knowledge competition for everything in a game. It's real time and full of fun
 
