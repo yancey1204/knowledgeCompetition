@@ -24,7 +24,7 @@ describe('QuestionArea.vue', () => {
     });
   });
 
-  describe('should return Q&A correctly for the flag isReversed', () => {
+  describe('getQuestion and getAnswer should return Q&A correctly for the flag isReversed', () => {
     const questionPair = {
       question: 'question',
       answer: 'answer',
@@ -48,6 +48,16 @@ describe('QuestionArea.vue', () => {
 
       expect(question).to.equal('answer');
       expect(answer).to.equal('question');
+    });
+  });
+
+  describe('getClass should return correct class name with different state', () => {
+    it('should return option if current answer is not the selected', () => {
+      vm.currentOption = 1;
+
+      const className = vm.getClass(0);
+
+      expect(className).to.equal('option');
     });
   });
 });
