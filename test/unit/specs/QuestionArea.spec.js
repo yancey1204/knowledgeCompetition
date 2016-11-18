@@ -30,20 +30,24 @@ describe('QuestionArea.vue', () => {
       answer: 'answer',
     };
 
-    it('should return question when isReversed is false', () => {
+    it('should return right when isReversed is false', () => {
       vm.isReversed = false;
 
-      const result = vm.getQuestion(questionPair);
+      const question = vm.getQuestion(questionPair);
+      const answer = vm.getAnswer(questionPair);
 
-      expect(result).to.equal('question');
+      expect(question).to.equal('question');
+      expect(answer).to.equal('answer');
     });
 
-    it('should return answer when isReversed is true', () => {
+    it('should return reversed result when isReversed is true', () => {
       vm.isReversed = true;
 
-      const result = vm.getQuestion(questionPair);
+      const question = vm.getQuestion(questionPair);
+      const answer = vm.getAnswer(questionPair);
 
-      expect(result).to.equal('answer');
+      expect(question).to.equal('answer');
+      expect(answer).to.equal('question');
     });
   });
 });
