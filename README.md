@@ -3,6 +3,8 @@
 
 > knowledge competition for everything in a game. It's real time and full of fun
 
+![Knowledge competition preview](https://github.comyancey1204/knowledgeCompetition/blob/master/kc.gif)
+
 ## Build Setup
 
 ``` bash
