@@ -1,17 +1,16 @@
 <template lang="pug">
 div#app
-  p
-    router-link(to="/foo") Go to foo
-    router-link(to="/sa") Go to bar
   router-view
 </template>
 
 <script>
+import NavigationBar from './components/NavigationBar';
 import QuestionArea from './components/QuestionArea';
 
 export default {
   name: 'app',
   components: {
+    NavigationBar,
     QuestionArea,
   },
 };

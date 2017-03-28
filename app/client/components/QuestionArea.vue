@@ -1,5 +1,7 @@
 <template lang="pug">
 div.question-area
+  router-link(to="/home") 
+    icon(name="home", class="home-icon")
   h1 {{ getQuestion(questionPair) | symbolFilter }}
   ul#question-list
     li(v-for="(option, index) in options") 
@@ -9,12 +11,17 @@ div.question-area
 </template>
 
 <script>
+import Icon from 'vue-icon';
 import 'whatwg-fetch';
 import _ from 'lodash';
 import * as utils from '../utils';
 
 export default {
   name: 'question-area',
+
+  components: {
+    Icon,
+  },
 
   data() {
     return {
@@ -28,28 +35,36 @@ export default {
     };
   },
 
+  watch: {
+    $route: 'fetchData',
+  },
+
   created() {
-    fetch('/data/questionList.json', { method: 'GET' })
-      .then((res) => {
-        if (res.ok) {
-          res.json().then((data) => {
-            this.questionList = data;
-            this.indexes = this.getRandomIndexes();
-            this.getNextQuestion();
-          });
-        }
-      });
+    this.fetchData();
   },
 
   methods: {
+    fetchData() {
+      const catalog = this.$route.path;
+      const DATA_PATH = `data/${catalog}.json`;
+
+      fetch(DATA_PATH, { method: 'GET' })
+        .then((res) => {
+          if (res.ok) {
+            res.json().then((data) => {
+              this.questionList = data;
+              this.indexes = this.getRandomIndexes();
+              this.getNextQuestion();
+            });
+          }
+        });
+    },
     getQuestion(questionPair) {
       return this.isReversed ? questionPair.answer : questionPair.question;
     },
-
     getAnswer(questionPair) {
       return this.isReversed ? questionPair.question : questionPair.answer;
     },
-
     getClass(option) {
       if (option !== this.currentOption) return 'option';
 
@@ -57,11 +72,9 @@ export default {
 
       return isCorrect ? 'correct' : 'wrong';
     },
-
     checkResult(option) {
       this.currentOption = option;
     },
-
     getNextQuestion() {
       this.currentOption = null;
       this.isReversed = Math.random() < 0.5;
@@ -79,7 +92,6 @@ export default {
       this.options = _.shuffle(this.options);
       this.getNextTempIndex();
     },
-
     getNextTempIndex() {
       if (this.tempIndex === this.indexes.length - 1) {
         this.tempIndex = 0;
@@ -88,13 +100,11 @@ export default {
         this.tempIndex += 1;
       }
     },
-
     getNewQuestionIndex() {
       this.indexes = this.getRandomIndexes();
 
       return _.head(this.indexes);
     },
-
     getRandomIndexes() {
       const indexes = [];
 
@@ -121,7 +131,6 @@ halfWidth = 500px
 
 h1
   font-weight: normal
-  display: inline-block
 
 button
   border: none
@@ -132,6 +141,10 @@ button
   font-size: fontSize
   font-weight: bolder
   cursor: pointer
+
+.home-icon
+  width: 32px
+  fill: #666
 
 ul
   list-style: none
