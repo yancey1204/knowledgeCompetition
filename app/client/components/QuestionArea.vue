@@ -1,13 +1,22 @@
-<template lang="pug">
-div.question-area
-  router-link(to="/home") 
-    icon(name="home", class="home-icon")
-  h1 {{ getQuestion(questionPair) | symbolFilter }}
-  ul#question-list
-    li(v-for="(option, index) in options") 
-      button(@click="checkResult(option)",:class="getClass(option)") {{ getAnswer(option) | symbolFilter }}
-  div.footer
-    button(@click="getNextQuestion") next
+<template>
+  <div id="question-area">
+    <router-link to="/home">
+      <icon name="home" class="home-icon" />
+    </router-link>
+    <h1> {{ getQuestion(questionPair) | symbolFilter }} </h1>
+    <ul id="question-list">
+      <li v-for="(option, index) in options">
+        <button @click="checkResult(option)" :class="getClass(option)">
+          {{ getAnswer(option) | symbolFilter }}
+        </button>
+      </li>
+    </ul>
+    <div class="footer">
+      <button @click="getNextQuestion"> 
+        next
+      </button>
+    </div>
+  </div>
 </template>
 
 <script>

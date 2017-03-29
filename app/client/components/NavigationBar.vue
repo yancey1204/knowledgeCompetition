@@ -1,12 +1,40 @@
-<template lang="pug">
-div#navigation
-    router-link(to="/hiragana") ひらがな
-    router-link(to="/shortcuts") ShortCuts
+<template>
+  <div id="navigation">
+    <div v-for="catalog in catalogMap">
+      <catalog-link :catalog-route=catalog.route :catalog-name=catalog.name />
+    </div>
+  </div>
 </template>
 
 <script>
+import 'whatwg-fetch';
+import CatalogLink from './catalogLink';
+
 export default {
   name: 'navigation-bar',
+
+  components: {
+    CatalogLink,
+  },
+
+  data() {
+    return {
+      catalogMap: [],
+    };
+  },
+
+  created() {
+    const DATA_PATH = 'data/catalogMap.json';
+
+    fetch(DATA_PATH, { method: 'GET' })
+      .then((res) => {
+        if (res.ok) {
+          res.json().then((data) => {
+            this.catalogMap = data;
+          });
+        }
+      });
+  },
 };
 </script>
 

@@ -4,7 +4,7 @@ const NavigationBar = require('../components/NavigationBar.vue');
 module.exports = [
   {
     path: '/',
-    component: questionArea,
+    component: NavigationBar,
   },
   {
     path: '/home',

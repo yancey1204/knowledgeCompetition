@@ -1,0 +1,12 @@
+[
+    {
+        "id": 0,
+        "name": "ひらがな",
+        "route": "hiragana"
+    },
+    {
+        "id": 1,
+        "name": "ShortCuts",
+        "route": "shortcuts"
+    }
+]
