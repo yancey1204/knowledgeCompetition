@@ -1,6 +1,6 @@
 const express = require('express');
 // const path = require('path');
-// const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
 const isProd = process.env.NODE_ENV === 'production';
 const PORT = isProd ? process.env.PORT : 8080;        // set our PORT
@@ -13,7 +13,11 @@ const webpackConfig = isProd
   : require('../../build/webpack.dev.conf');
 
 const app = express();
-// const mongoose = require('mongoose');
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.use(require('./routers'));
 
 if (!isProd) {
   const compiler = webpack(webpackConfig);
@@ -43,7 +47,5 @@ app.use(express.static('dist'));
 app.use('/data', express.static('app/server/data'));
 
 app.listen(PORT, () => {
-  /*eslint-disable*/
   console.log(`Example app listening on port ${PORT}`);
-  /*eslint-enable*/
 });

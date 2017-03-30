@@ -10,7 +10,7 @@
     "unit": "karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit",
-    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
+    "lint": "eslint --ext .js,.vue app/",
     "start": "npm run build && NODE_ENV=production node --harmony app.js"
   },
   "dependencies": {
@@ -79,7 +79,8 @@
     "webpack-dev-middleware": "^1.8.3",
     "webpack-hot-middleware": "^2.12.2",
     "webpack-merge": "^0.14.1",
-    "whatwg-fetch": "^2.0.0"
+    "whatwg-fetch": "^2.0.0",
+    "bluebird": "^3.5.0"
   },
   "engines": {
     "node": ">= 4.0.0",
